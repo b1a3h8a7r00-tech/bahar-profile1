@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>پروفایل بهار</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: pink;
+            text-align: center;
+            padding: 50px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 300px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            width: 90%;
+        }
+        .tab {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>پروفایل بهار</h2>
+    
+    <button onclick="showTab('phone')">ورود با شماره</button>
+    <button onclick="showTab('invite')">ورود با کد</button>
+
+    <div id="phone" class="tab active">
+        <h3>شماره موبایل</h3>
+        <input type="text" id="mobile" placeholder="09xxxxxxxxx" value="09057756630">
+        <button onclick="sendCode()">ارسال کد</button>
+        
+        <div id="codeSection" style="display:none">
+            <input type="text" id="code" placeholder="کد 4 رقمی">
+            <button onclick="checkCode()">تایید کد</button>
+        </div>
+    </div>
+
+    <div id="invite" class="tab">
+        <h3>کد دعوت</h3>
+        <input type="text" id="inviteCode" placeholder="کد دعوت">
+        <button onclick="checkInvite()">ورود</button>
+        <p>کد دعوت: 4407</p>
+    </div>
+</div>
+
+<script>
+function showTab(tabName) {
+    document.getElementById('phone').classList.remove('active');
+    document.getElementById('invite').classList.remove('active');
+    document.getElementById(tabName).classList.add('active');
+}
+
+function sendCode() {
+    var mobile = document.getElementById('mobile').value;
+    if(mobile.length == 11) {
+        alert('کد به شماره ' + mobile + ' ارسال شد (کد: 1234)');
+        document.getElementById('codeSection').style.display = 'block';
+    } else {
+        alert('شماره موبایل باید 11 رقمی باشد');
+    }
+}
+
+function checkCode() {
+    var code = document.getElementById('code').value;
+    if(code == '1234') {
+        window.location.href = 'profile.html';
+    } else {
+        alert('کد اشتباه است');
+    }
+}
+
+function checkInvite() {
+    var code = document.getElementById('inviteCode').value;
+    if(code == '4407') {
+        window.location.href = 'profile.html';
+    } else {
+        alert('کد دعوت اشتباه است');
+    }
+}
+</script>
+
+</body>
+</html>
